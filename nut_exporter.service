@@ -1,0 +1,17 @@
+[Unit]
+Description=nut exporter %I
+After=network.target
+
+[Service]
+PIDFile=/var/run/nut_exporter/%I.pid
+User=root
+Group=root
+WorkingDirectory=/tmp
+ExecStart=/usr/local/sbin/nut_exporter -ups %I
+Restart=always
+RestartSec=5
+PrivateTmp=true
+Type=forking
+
+[Install]
+WantedBy=multi-user.target
